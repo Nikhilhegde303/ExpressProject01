@@ -1,22 +1,12 @@
-const { createServer }  = require('http');
-const fs = require('fs');
-const path = require('path');
+const express = require('express')
+const app = express()
+const port = 3000
+const hostname = '127.0.0.1'
 
-const hostname = '127.0.0.1';
-const port = 5000;
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
 
-const server = createServer((req, res) => {
-    const filePath = path.join(__dirname, 'index.html');
-    fs.readFile(filePath, (err, data) => {
-      
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(data); // send HTML file contents
-    });
-//   res.statusCode = 200;
-//   res.setHeader('Content-Type', 'text/plain');
-//   res.end('hello world');
-});
-
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+app.listen(port, () => {
+  console.log(`Example app listening on port http://${hostname}:${port}`)
+})
