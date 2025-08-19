@@ -1,12 +1,11 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const dotenv= require("dotenv").config();
+const port = process.env.PORT||5000
 const hostname = '127.0.0.1'
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use("/api/contacts",require("./routes/contactRoute"));
 
 app.listen(port, () => {
-  console.log(`Example app listening on port http://${hostname}:${port}`)
+  console.log(`Example app listening on port:${port}`)
 })
